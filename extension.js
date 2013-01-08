@@ -333,7 +333,7 @@ NetSpeed.prototype = {
 	/************************* speed to user-friendly string ***************************************/
 	_speed_to_string: function (amount, digits)	{
 		if (amount == 0)
-			return ["0", "B/s"];
+			return ["0.0", "  B/s"];
 		if (digits < 3)
 			digits = 3;
 		amount *= 1000;
@@ -348,8 +348,9 @@ NetSpeed.prototype = {
 			digits -= 2;
 		else if (amount >= 10)
 			digits -= 1; 
-		let  speed_map = ["B/s", "KB/s", "MB/s", "GB/s"];
-		return [amount.toFixed (digits - 1), speed_map[unit]];
+		let  speed_map = ["  B/s", "KB/s", "MB/s", "GB/s"];
+//		return [amount.toFixed (digits - 1), speed_map[unit]];
+		return [amount.toFixed (1), speed_map[unit]];
 	},
 
 
@@ -459,7 +460,8 @@ NetSpeed.prototype = {
 		this.digits = this._setting.get_int('digits');
 		this.device = this._setting.get_string('device');
 		this.timer = this._setting.get_int('timer');
-		this.labelsize = this._setting.get_int('label-size');
+//		this.labelsize = this._setting.get_int('label-size');
+		this.labelsize = 48;
 		this.menulabelsize = this._setting.get_int('menu-label-size');
   },
 
